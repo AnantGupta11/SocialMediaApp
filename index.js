@@ -12,7 +12,7 @@ const passportLocal=require('./config/passport-local-strategy');
 const { pass } = require('./config/mongoose');
 
 app.use(express.urlencoded());
-
+app.use();
 //using cookie
 app.use(cookieParse());
 
