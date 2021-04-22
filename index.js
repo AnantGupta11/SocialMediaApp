@@ -10,9 +10,10 @@ const session=require('express-session');
 const passport=require('passport');
 const passportLocal=require('./config/passport-local-strategy');
 const { pass } = require('./config/mongoose');
+const MongoStore=require('connect-mongo')(session);
 
 app.use(express.urlencoded());
-app.use();
+
 //using cookie
 app.use(cookieParse());
 
@@ -28,7 +29,7 @@ app.set('layout extractScripts',true);
 app.set('view engine','ejs');
 app.set('views','./views');
 
-
+//MongoStore is use to store the session cookie in db
 app.use(session({
     name: 'social',
     //todo change the secret before deployment
@@ -37,7 +38,17 @@ app.use(session({
     resave:false,
     cookie: {
         maxAge: (1000*60*100)
+    },
+    store: new MongoStore({
+        mongooseConnection:db,
+        autoRemove:'disabled'
+    },function(err){
+        if(err){
+            console.lof(err || 'Connect-mongo is ok');
+        }
     }
+    )
+
 }));
 
 app.use(passport.initialize());
