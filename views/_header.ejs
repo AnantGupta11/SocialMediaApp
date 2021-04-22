@@ -1,7 +1,13 @@
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.3/css/all.css" integrity="sha384-SZXxX4whJ79/gErwcOYf+zWLeJdY/qpuqC4cAa9rOGUstPomtqpuNWT9wdPEn2fk" crossorigin="anonymous">
 <link rel="stylesheet" href="/css/header.css">
-<header>
-    Page Header
-    <ul>
+<header id="page-header">
+    <div id="header-1">
+        <i class="fas fa-users"></i>
+        <a href="/">
+            <h1>Social</h1>
+        </a>
+    </div>
+    <ul id="header-2">
         <% if(locals.user){ %>
             <li>
                 <a href="/users/profile"><%= user.name %></a>

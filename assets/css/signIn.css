@@ -1,0 +1,29 @@
+body {
+  display: flex;
+  flex-direction: column;
+  background-color: lightblue;
+}
+
+.signin {
+  text-align: center;
+}
+
+.signin > label {
+  font-family: sans-serif;
+}
+
+.signin > input {
+  height: 30px;
+  width: 300px;
+  margin-left: 5px;
+  margin-top: 5px;
+}
+
+#btn {
+  width: 80px;
+  cursor: pointer;
+}
+
+#btn :hover {
+  background-color: black;
+}
