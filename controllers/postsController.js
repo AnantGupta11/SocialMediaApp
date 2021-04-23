@@ -6,9 +6,13 @@ module.exports.posts=function(req,res){
     })
 }
 module.exports.createPost=function(req,res){
-    Post.create(req.body,function(err,post){
+    Post.create({
+        content:req.body.content,
+        user:req.user._id
+    },function(err,post){
         if(err){
             console.log('Error in creating Post',err);
         }
+        return res.redirect('back');
     })
 }
