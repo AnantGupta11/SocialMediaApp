@@ -1,5 +1,6 @@
 const Comment=require('../models/comment');
-const Post=require('../models/post')
+const Post=require('../models/post');
+const { post } = require('../routes/comments');
 
 
 module.exports.create=function(req,res){
@@ -30,7 +31,8 @@ module.exports.destroy=function(req,res){
         //     console.log('Error in finding comment for delete',err);
         //     return;
         // }
-        if(comment.user == req.user.id ){
+        // pending to make delete functionality for post oner
+        if((comment.user == req.user.id) || (comment.post==comment.user)){
             //first go to post where is comment array then delete the comment 
             // from that array
 

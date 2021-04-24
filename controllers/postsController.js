@@ -27,7 +27,7 @@ module.exports.destroy = function(req,res){
                     console.log('Error in deleting comments of post',err);
                     return;
                 }
-                return res.redirect('back');
+                 return res.redirect('back');
             });
         }else{
             return res.redirect('back');
