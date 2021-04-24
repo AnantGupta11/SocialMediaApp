@@ -12,12 +12,18 @@
     <div id="post-list-container">
         <ul>
             <% for(post of posts){ %>
-                <p>
-                    <li>
+                        
+                <li>
+                    <p>
+                        <% if (locals.user && locals.user.id == post.user.id){ %>
+                            <small>
+                                <a href="/posts/destroy/<%= post.id %>">X</a>
+                            </small>
+                        <% } %>
                         <%= post.content %><br>
                         <small><%= post.user.name %></small>
-                    </li>
-                </p>
+                    </p>
+                </li>
                 <div class="post-comments">
                     <% if(locals.user){ %>
                         <form action="/comments/create" method="POST">

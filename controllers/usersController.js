@@ -14,8 +14,7 @@ module.exports.signIn=function(req,res){
     return res.render('signIn',{
                 title:'Sign In'
     })
-    
-    
+        
 }
 
 //render the signUp page

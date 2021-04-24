@@ -1,0 +1,29 @@
+body {
+  display: flex;
+  flex-direction: column;
+  background-color: lightblue;
+}
+
+.signup {
+  text-align: center;
+}
+
+.signup > label {
+  font-family: sans-serif;
+}
+
+.signup > input {
+  height: 30px;
+  width: 300px;
+  margin-left: 5px;
+  margin-top: 5px;
+}
+
+#btn {
+  width: 80px;
+  cursor: pointer;
+}
+
+#btn :hover {
+  background-color: black;
+}
