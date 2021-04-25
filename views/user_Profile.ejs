@@ -3,7 +3,7 @@
     
     <% if(user.id==profile_user.id) {%>
         <!-- if user mached(same user) then show the form -->
-        <form action="/users/update/<%= profile_user.id%>" method="POST">
+        <form action="/users/update/<%= profile_user.id %>" method="POST">
             <input type="text" name="name" placeholder="Your Name" value="<%=profile_user.name%>" required>
             <input type="email" name="email" placeholder="Your Email" value="<%=profile_user.email%>" required>
             <input type="submit" value="Update Profile">

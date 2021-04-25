@@ -1,0 +1,49 @@
+.home {
+  height: 100%;
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+}
+
+.home #groups {
+  height: 100%;
+  width: 20%;
+  display: flex;
+  flex-direction: column;
+}
+
+.home #feed-posts {
+  height: 100%;
+  width: 60%;
+  display: flex;
+  flex-direction: column;
+  color: whitesmoke;
+}
+
+.home #feed-posts #post-box {
+  border-radius: 8px;
+}
+
+.home #feed-posts #post-submit {
+  font-weight: 800;
+  color: black;
+}
+
+.home #feed-posts #post-list-container ul li {
+  list-style: none;
+}
+
+.home #user-friends {
+  height: 100%;
+  width: 20%;
+  color: whitesmoke;
+  display: flex;
+  flex-direction: column;
+}
+
+.home #user-friends p a {
+  color: whitesmoke;
+  font-family: sans-serif;
+  font-weight: 700;
+  text-decoration: none;
+}

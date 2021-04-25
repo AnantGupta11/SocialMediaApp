@@ -1,8 +1,10 @@
 body {
   margin: 0;
   text-align: center;
+  background-color: rgba(8, 14, 97, 0.836);
 }
 
 body #layout-main {
   height: 100%;
+  position: relative;
 }

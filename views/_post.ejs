@@ -1,15 +1,19 @@
-<li>
-    <p>
+<link rel="stylesheet" href="/css/post.css">
+<li id="all-posts">
+    <p id="post-view">
+        
+        <small>
+            <%= post.user.name %>
+        </small>
+        <br>
+        <%= post.content %>
+        
         <% if (locals.user && locals.user.id == post.user.id){ %>
         <small>
             <a href="/posts/destroy/<%= post.id %>">X</a>
         </small>
         <% } %>
-        <%= post.content %>
-        <br>
-        <small>
-            <%= post.user.name %>
-        </small>
+        
     </p>
     <div class="post-comments">
         <% if (locals.user){ %>
