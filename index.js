@@ -30,6 +30,9 @@ app.use(cookieParse());
 
 app.use(express.static('./assets'))
 
+//make the uploads part available for browser
+app.use('/uploads',express.static(__dirname + '/uploads'));
+
 app.use(expressLayouts);
 //extract styles and scripts from sub pages into the layout
 app.set('layout extractStyles',true);
