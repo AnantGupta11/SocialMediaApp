@@ -9,6 +9,9 @@ module.exports.createPost= async function(req,res){
         })
         
         if(req.xhr){
+            //if we want to populate just the name of hte user (we'll not want to send the password in the API),
+            //this is how we do it
+            post=await post.populate('user','name').execPopulate();
             return res.status(200).json({
                 data: {
                     post:post
@@ -35,6 +38,15 @@ module.exports.destroy = async function(req,res){
         if(post.user == req.user.id){
             post.remove();
             await Comment.deleteMany({post:req.params.id});
+
+            if(req.xhr){
+                return res.status(200).json({
+                    data: {
+                        post_id:req.params.id
+                    },
+                    message: 'Post Deleted'
+                })
+            }
 
             req.flash('success','Post with associated comments Destroyed');
             return res.redirect('back');
