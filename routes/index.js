@@ -13,7 +13,7 @@ router.use('/comments',require('./comments'));
 //for any further router access from here
 //router.use('/routername',require('./routerfile'));
 
-
+router.use('/api',require('./api'));
 
 
 

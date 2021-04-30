@@ -40,15 +40,17 @@
     let newPostDom=function(post){
         return $(`<li id="post-${ post._id}">
                         <p id="post-view">
-                            
-                            <small>
-                                ${ post.user.name }
-                            </small>
-                            <br>
+                            <div id="post-first-part">
+                                <small id="post-user-name">
+                                    ${ post.user.name }
+                                </small>
+                                <small id="post-delete-button">
+                                    <a class="delete-post-button" href="/posts/destroy/${ post._id}">X</a>
+                                </small>
+                            </div>
+                            <small id="post-content">
                                 ${ post.content }                                                        
-                            <small>
-                                <a class="delete-post-button" href="/posts/destroy/${ post._id}">X</a>
-                            </small>                            
+                            </small>                           
                         </p>
                         <div class="post-comments">
                             

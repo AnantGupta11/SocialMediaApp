@@ -1,9 +1,16 @@
 body{
+
     margin: 0;
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
     text-align: center;
     background-color: rgba(8, 14, 97, 0.836);
+    
     #layout-main{
+        
         height: 100%;
-        position: relative;
+        // position: static;
+        
     }
 }

@@ -1,18 +1,20 @@
 <link rel="stylesheet" href="/css/post.css">
-<li id="post-<%= post.id%>">
+<li id="post-<%= post.id%>" class="post-class">
     <p id="post-view">
-        
-        <small>
+        <!-- <span id="2"> -->
+        <small id="post-user-name">
             <%= post.user.name %>
+        </small>            
+        <small id="post-content">
+            <%= post.content %>
         </small>
-        <br>
-        <%= post.content %>
-        
+        <!-- </span> -->
         <% if (locals.user && locals.user.id == post.user.id){ %>
-        <small>
-            <a class="delete-post-button" href="/posts/destroy/<%= post.id %>">X</a>
-        </small>
+            <small id="post-delete-button">
+                <a class="delete-post-button" href="/posts/destroy/<%= post.id %>">X</a>
+            </small>
         <% } %>
+        
         
     </p>
     <div class="post-comments">
