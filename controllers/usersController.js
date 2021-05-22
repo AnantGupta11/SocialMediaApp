@@ -1,6 +1,9 @@
 const User=require('../models/user');
 const path= require('path');
 const fs=require('fs');
+const ForgotPassword= require('../models/reset_password');
+const crypto=require('crypto');
+const forgotPasswordMailer= require('../mailers/forgot_password_mailer');
 
 module.exports.profile=function(req,res){
     User.findById(req.params.id, function(err,user){
@@ -114,4 +117,54 @@ module.exports.destroySession= function(req,res){
     req.logout();
     req.flash('success', 'Logged out SuccessFully');
     return res.redirect('/');
+}
+
+//forgot password
+module.exports.forgotPass=function(req,res){
+        
+        res.render('forgotten_password',{
+            title: "Forgot Password"
+        });
+}
+
+//sending mail to reset password
+module.exports.resetMail = async function(req,res){
+    console.log(req.body.email);
+    try{
+       User.findOne({email: req.body.email}, function(err,user){
+           if(err){
+            req.flash('error', err);
+            return;
+           }
+           if(!user){
+                req.flash('error','Invalid Email!!');
+                return res.redirect('back');
+           }
+           if(req.body.confirmpassword != req.body.password){
+                req.flash('error','Password and Confirm Password are not same'); 
+            }
+            ForgotPassword.create({
+                user:user._id,
+                accessToken: crypto.randomBytes(20).toString('hex'),
+                isValid: false
+            })    
+            
+            forgotPasswordMailer.forgotPassword(user, ForgotPassword.accessToken);
+            // req.flash('success','Check your Email.');
+            user.password=req.body.password;
+            user.save();
+            return res.redirect('back');
+       })
+    }catch(err){
+        req.flash('error','Invalid Email Id');
+    }
+   
+}
+module.exports.forgotPasswordLink=async function(req,res){
+    res.render('forgotPassword',{
+        title: "Change Password"
+    });   
+}
+module.exports.resetPassword= async function(req,res){
+    
 }
