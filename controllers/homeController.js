@@ -1,6 +1,7 @@
 // const { posts } = require("./postsController");
 const Post=require('../models/post');
 const User=require('../models/user');
+const Like=require('../models/like');
 module.exports.home =  async function(req,res){
     // console.log(req.cookies);
     // res.cookie('id', 25);
@@ -23,9 +24,10 @@ module.exports.home =  async function(req,res){
             populate:{
                 path:'likes'
             }
-        }).populate('comments')
+        })
+        .populate('comments')
         .populate('likes');
-        let users= await User.find({})
+        let users= await User.find({});
         
     
         return res.render('home',{
@@ -37,8 +39,5 @@ module.exports.home =  async function(req,res){
     }catch(err){
         console.log('Error',err);
         return;
-    }
-    
-    
-    
+    }   
 }

@@ -37,6 +37,7 @@ module.exports.create=async function(req,res){
                     message: 'Comment Published'
                 })
             }
+            req.flash('succss', 'Comment Published');
             res.redirect('/');            
         }
     }catch(err){
@@ -49,7 +50,7 @@ module.exports.destroy= async function(req,res){
         let comment= await Comment.findById(req.params.id)
         
         // pending to make delete functionality for post oner
-        if((comment.user == req.user.id) || (comment.post==comment.user)){
+        if(comment.user == req.user.id ){
             //first go to post where is comment array then delete the comment 
             // from that array
 
@@ -71,7 +72,7 @@ module.exports.destroy= async function(req,res){
                     message: 'Comment Deleted'
                 })
             }
-
+            req.flash('success','Comment Deleted');
             return res.redirect('back');
         }else{
             req.flash('error', 'Unauthorized');

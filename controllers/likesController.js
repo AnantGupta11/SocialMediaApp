@@ -7,7 +7,7 @@ module.exports.toggleLike= async function(req,res){
         //likes/toggle.?id=abcdegtype=Post
         let likeable;
         let deleted=false;
-        if(req.query.type='Post'){
+        if(req.query.type == 'Post'){
             likeable=await  Post.findById(req.query.id).populate('likes');
         }else{
             likeable=await Comment.findById(req.query.id).populate('likes');
@@ -42,7 +42,7 @@ module.exports.toggleLike= async function(req,res){
             }
         })
     }catch(err){
-        console.log(err);
+        console.log('Error',err);
         return res.json(500,{
             message: 'Internal Server Error'
         })
