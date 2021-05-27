@@ -10,8 +10,21 @@ class ChatEngine{
     }
 
     connectionHandler(){
+        let self=this;
         this.socket.on('connect', function(){
             console.log('Connection Establish using socket');
+            
+
+            self.socket.emit('join_room',{
+                user_email:self.userEmail,
+                chatroom: 'social'
+            });
+
+
+            self.socket.on('user_join',function(data){
+                console.log('A user joined!',data);
+            });
+        
         })
     }
 }
