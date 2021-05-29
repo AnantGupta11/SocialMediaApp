@@ -58,6 +58,47 @@ class ChatEngine{
                 newMessage.addClass(messageType);
                 $('#chat-messages-list').append(newMessage);
             })
+            self.socket.on('output-msg', function(data){
+                // console.log(data);
+                console.log('message_received',data);
+                if(data.length){
+                    data.forEach(msg=>{
+                        let newMessage= $('<li>');
+
+                        let messageType= 'other-message';
+                        if(msg.sender==self.userEmail){
+                            messageType='self-message';
+                        }
+
+                        newMessage.append($('<span>',{
+                            'html':msg.message
+                        }));
+                        newMessage.append($('<sub>',{
+                            'html':msg.user_email
+                        }));
+                        newMessage.addClass(messageType);
+                        $('#chat-messages-list').append(newMessage);
+                            })
+                        }
+            })
         })
     }
+    
 }
+// fetching initial chat messages from the database
+// (function() {
+//     fetch("/chats")
+//       .then(data => {
+//         return data.json();
+//       })
+//       .then(json => {
+//         json.map(data => {
+//           let li = document.createElement("li");
+//           let span = document.createElement("span");
+//           messages.appendChild(li).append(data.message);
+//           messages
+//             .appendChild(span)
+//             .append("by " + data.sender + ": " + formatTimeAgo(data.createdAt));
+//         });
+//       });
+//   })();

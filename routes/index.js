@@ -14,7 +14,7 @@ router.use('/likes',require('./likes'));
 //router.use('/routername',require('./routerfile'));
 
 router.use('/api',require('./api'));
-
+// router.use('/chats',require('./chats'));
 
 
 
