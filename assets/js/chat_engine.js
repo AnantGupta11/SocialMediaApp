@@ -74,7 +74,7 @@ class ChatEngine{
                             'html':msg.message
                         }));
                         newMessage.append($('<sub>',{
-                            'html':msg.user_email
+                            'html':msg.sender
                         }));
                         newMessage.addClass(messageType);
                         $('#chat-messages-list').append(newMessage);

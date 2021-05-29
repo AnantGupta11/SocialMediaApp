@@ -7,12 +7,12 @@ const forgotPasswordMailer= require('../mailers/forgot_password_mailer');
 
 module.exports.profile=function(req,res){
     User.findById(req.params.id, function(err,user){
-
-        res.render('user_Profile',{
+        // console.log('inside profile');
+        return res.render('user_Profile',{
             title:'User Profile',
             profile_user:user
         });
-    })
+    });
     
 }
 
@@ -28,35 +28,37 @@ module.exports.updateProfile=async function(req,res){
     // }else{
     //     return res.status(401).send('Unauthorized');
     // }
-    try{
         if(req.user.id== req.params.id){
-            let user= await User.findById(req.params.id);
-            User.uploadedAvatar(req,res,function(err){
-                if(err){
-                    console.log('------->Multer Error',err);
-                    return;
-                }
-                user.name=req.body.name;
-                user.email=req.body.email;
-                if(req.file){
-                    if(user.avatar){
-                        fs.unlinkSync(path.join(__dirname,'..',user.avatar));
+            try{
+            
+                let user= await User.findById(req.params.id);
+                User.uploadedAvatar(req,res,function(err){
+                    if(err){
+                        console.log('------->Multer Error',err);
+                        return;
                     }
-                    //this is saving the path of the uploaded file into the avatar field in the user
-                    user.avatar=User.avatarPath + '/' + req.file.filename;
-                }
-                user.save();
+                    user.name=req.body.name;
+                    user.email=req.body.email;
+                    if(req.file){
+                        if(user.avatar){
+                            fs.unlinkSync(path.join(__dirname,'..',user.avatar));
+                        }
+                        //this is saving the path of the uploaded file into the avatar field in the user
+                        user.avatar=User.avatarPath + '/' + req.file.filename;
+                    }
+                    user.save();
+                    return res.redirect('back');
+                })
+
+            }catch(error){
+                req.flash('Error',err);
+                console.log('Error',err);
                 return res.redirect('back');
-            })
+            }
         }else{
+            req.flash('error', 'Unauthorized!');
             return res.status(401).send('Unauthorized');
         }
-
-    }catch(error){
-        req.flash('Error',err);
-        console.log('Error',err);
-        return res.redirect('back');
-    }
     
 }
 
