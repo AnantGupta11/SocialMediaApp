@@ -1,5 +1,5 @@
 .home{
-    height: 100%;
+    height: auto;
     width: 100%;
     display: flex;
     flex-direction: row;
@@ -10,8 +10,9 @@
         flex-direction: column;
     }
     #feed-posts{
-        height: 100%;
-        width: 60%;
+        margin-top: 5vh;
+        height: auto;
+        width: 55%;
         display: flex;
         flex-direction: column;
         color: whitesmoke;
@@ -22,12 +23,19 @@
             font-weight: 800;
             color: black;
         }
+        #post-list-container{
+            height: auto;
+        }
+        #post-list-container ul{
+            height: auto;
+        }
         #post-list-container ul li{
+            height: auto;
             list-style: none;
         }
     }
     #user-friends{
-        height: 100%;
+        height: auto;
         width: 20%;
         color: whitesmoke;
         display: flex;

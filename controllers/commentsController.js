@@ -18,7 +18,7 @@ module.exports.create=async function(req,res){
             
             post.comments.push(comment);
             post.save();
-            comment=await comment.populate('user','name email').execPopulate();
+            comment=await comment.populate('user','name').execPopulate();
             // comments_mailer.newComment(comment);
             let job=queue.create('emails', comment).save(function(err){
                 if(err){
@@ -41,7 +41,7 @@ module.exports.create=async function(req,res){
             res.redirect('/');            
         }
     }catch(err){
-        console.lor('Error',err);
+        console.log('Error',err);
         return;
     }    
 }

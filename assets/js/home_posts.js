@@ -41,45 +41,60 @@
 
     //method to create the post in dom
     let newPostDom=function(post){
-        return $(`<li id="post-${ post._id}">
-                        <p id="post-view">
-                            <div id="post-first-part">
-                                <small id="post-user-name">
-                                    ${ post.user.name }
-                                </small>
-                                <small id="post-delete-button">
-                                    <a class="delete-post-button" href="/posts/destroy/${ post._id}">X</a>
-                                </small>
+        return $(`<li id="post-${ post._id}" class="post-class">
+                    <div class="post-wrapper">
+                        <!-- <span id="2"> -->
+                        <div class="post-header">
+                            <div class="post-avatar">
+                                <img
+                                src="https://image.flaticon.com/icons/svg/2154/2154651.svg"
+                                alt="user-pic"
+                                />
+                                <div>
+                                <span class="post-author">${ post.user.name }</span>
+                                <span class="post-time">a minute ago</span>
+                                </div>
                             </div>
-                            <small id="post-content">
-                                ${ post.content }                                                        
-                            </small>
-                            <small>
+                            <div class="post-content">${ post.content }</div>
+                            <div className="post-actions">
+                                <div className="post-like">
+                                <!-- <img
+                                    src="https://image.flaticon.com/icons/svg/1077/1077035.svg"
+                                    alt="likes-icon"
+                                /> -->
+                                
+                                <% if (locals.user){ %>
+                                    <a class="toggle-like-button" data-likes="0" href="/likes/toggle/?id=${post._id}&type=Post">
+                                            0 Likes
+                                    </a>
+                                    <% }
                             
-                                <a class="toggle-like-button" data-likes="0" href="/likes/toggle/?id=${post._id}&type=Post">
-                                    0 Likes
-                                </a>
-                            
-                            </small>                           
-                        </p>
-                        <div class="post-comments">
-                            
-                                <form action="/comments/create" method="POST" id="post-${post._id}">
-                                    <input type="text" name="content" placeholder="Type Here to add comment..." required>
-                                    <input type="hidden" name="post" value="${ post._id }" >
-                                    <input type="submit" value="Add Comment">
-                                </form>
-                    
-                            
-                    
-                            <div class="post-comments-list">
-                                <ul id="post-comments-${ post._id }">
-                                    
-                                </ul>
+                                </div>
+                                <div class="post-comments-icon">
+                                    <!-- <img
+                                    src="https://image.flaticon.com/icons/svg/1380/1380338.svg"
+                                    alt="comments-icon"
+                                    /> -->
+                                    <span>
+                                        <ul id="post-comments-${ post._id }">
+                                             
+                                        </ul>
+                                    </span>
+                                </div>
+                            </div>
+                
+                            <div class="post-comment-box">
+                                    <form action="/comments/create" method="POST" id="post-${ post._id }-comments-form">
+                                        <input type="text" name="content" placeholder="Type Here to add comment..." required>
+                                        <input type="hidden" name="post" value="${ post._id }" >
+                                        <input type="submit" value="Add Comment">
+                                    </form>
+                                <!-- <input placeholder="Start typing a comment" /> -->
                             </div>
                         </div>
-                        
-                    </li>`)
+                    </div>
+                </li>`)
+                
     }
 
 
@@ -128,3 +143,47 @@
     createPost();
    convertPostsToAjax();
 }
+
+
+
+
+
+// <li id="post-${ post._id}">
+                    //     <p id="post-view">
+                    //         <div id="post-first-part">
+                    //             <small id="post-user-name">
+                    //                 ${ post.user.name }
+                    //             </small>
+                    //             <small id="post-delete-button">
+                    //                 <a class="delete-post-button" href="/posts/destroy/${ post._id}">X</a>
+                    //             </small>
+                    //         </div>
+                    //         <small id="post-content">
+                    //             ${ post.content }                                                        
+                    //         </small>
+                    //         <small>
+                            
+                    //             <a class="toggle-like-button" data-likes="0" href="/likes/toggle/?id=${post._id}&type=Post">
+                    //                 0 Likes
+                    //             </a>
+                            
+                    //         </small>                           
+                    //     </p>
+                    //     <div class="post-comments">
+                            
+                    //             <form action="/comments/create" method="POST" id="post-${post._id}">
+                    //                 <input type="text" name="content" placeholder="Type Here to add comment..." required>
+                    //                 <input type="hidden" name="post" value="${ post._id }" >
+                    //                 <input type="submit" value="Add Comment">
+                    //             </form>
+                    
+                            
+                    
+                    //         <div class="post-comments-list">
+                    //             <ul id="post-comments-${ post._id }">
+                                    
+                    //             </ul>
+                    //         </div>
+                    //     </div>
+                        
+                    // </li>

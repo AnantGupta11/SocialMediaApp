@@ -7,7 +7,6 @@ const forgotPasswordMailer= require('../mailers/forgot_password_mailer');
 
 module.exports.profile=function(req,res){
     User.findById(req.params.id, function(err,user){
-        // console.log('inside profile');
         return res.render('user_Profile',{
             title:'User Profile',
             profile_user:user
@@ -18,16 +17,6 @@ module.exports.profile=function(req,res){
 
 //update profile
 module.exports.updateProfile=async function(req,res){
-    // if(req.user.id== req.params.id){
-    //     User.findByIdAndUpdate(req.params.id,{
-    //         name:req.body.name,
-    //         email:req.body.email
-    //     },function(err,user){
-    //         return res.redirect('back');
-    //     })
-    // }else{
-    //     return res.status(401).send('Unauthorized');
-    // }
         if(req.user.id== req.params.id){
             try{
             

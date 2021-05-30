@@ -56,28 +56,23 @@ class PostComments{
     }
 
     newCommentDom(comment){
-        return $(`<li id="comment-${comment._id}">
-                    <p>
-                        
-                        <small>
-                            <a class="delete-comment-button" href="/comments/destroy/${comment._id} ">X</a>
-                        </small>
-                    
-                        ${ comment.content }
-                        <br>
-                        <small>
-                        ${ comment.user.name}
-                        </small>
-                        <small>
-                            
-                                <a class="toggle-like-button" data-likes="0" href="/likes/toggle/?id=${comment._id}&type=Comment">
-                                    0 Likes
-                                </a>
-                            
-                        </small>
 
-                    </p>    
-    
+        return $(`<li id="comment-${ comment._id}">
+                    <div class="post-comments-list">
+                        <div class="post-comments-item">
+                            <div class="post-comment-header">
+                                <span class="post-comment-author">${ comment.user.name}</span>
+                                <span class="post-comment-time">a minute ago</span>
+                                <span class="post-comment-likes">
+                                        <a class="toggle-like-button" data-likes="0" href="/likes/toggle/?id=${comment._id}&type=Comment">
+                                            0 Likes
+                                        </a>
+                                </span>
+                            </div>
+                
+                            <div class="post-comment-content">${comment.content}</div>
+                        </div>
+                    </div>
                 </li>`);
     }
 
@@ -107,3 +102,28 @@ class PostComments{
         });
     }
 }
+
+
+{/* <li id="comment-${comment._id}">
+    <p>
+        
+        <small>
+            <a class="delete-comment-button" href="/comments/destroy/${comment._id} ">X</a>
+        </small>
+    
+        ${ comment.content }
+        <br>
+        <small>
+        ${ comment.user.name}
+        </small>
+        <small>
+            
+                <a class="toggle-like-button" data-likes="0" href="/likes/toggle/?id=${comment._id}&type=Comment">
+                    0 Likes
+                </a>
+            
+        </small>
+
+    </p>    
+
+</li> */}

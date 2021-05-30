@@ -1,5 +1,27 @@
+<link rel="stylesheet" href="/css/post.css">
 <li id="comment-<%= comment._id%>">
-    <p>
+    <div class="post-comments-list">
+        <div class="post-comments-item">
+          <div class="post-comment-header">
+            <span class="post-comment-author"><%= comment.user.name%></span>
+            <span class="post-comment-time">a minute ago</span>
+            <span class="post-comment-likes">
+                <% if (locals.user){ %>
+                    <a class="toggle-like-button" data-likes="<%= comment.likes.length %>" href="/likes/toggle/?id=<%=comment._id%>&type=Comment">
+                            <%= comment.likes.length %> Likes
+                    </a>
+                <% }else{ %>
+                    <%= comment.likes.length %> Likes
+                <% } %>
+            </span>
+          </div>
+
+          <div class="post-comment-content"><%= comment.content %><%= comment.user.name %></div>
+            <%=comment.user.name%>
+        </div>
+    </div>
+</li>
+    <!-- <p>
         <% if (locals.user && locals.user.id == comment.user){ %>
         <small>
             <a class="delete-comment-button" href="/comments/destroy/<%= comment.id %>">X</a>
@@ -9,10 +31,10 @@
         <br>
         <small>
             <%= comment.user.name %>
-        </small>
-        <!-- CHANGE :: display the likes of this comment, if the user is logged in, then show the link to toggle likes, else, just show the count -->
+        </small> -->
+         <!-- CHANGE :: display the likes of this comment, if the user is logged in, then show the link to toggle likes, else, just show the count  -->
             <!-- study about the data attribute -->
-            <small>
+             <!-- <small>
                 <% if (locals.user){ %>
                     <a class="toggle-like-button" data-likes="<%= comment.likes.length %>" href="/likes/toggle/?id=<%=comment._id%>&type=Comment">
                             <%= comment.likes.length %> Likes
@@ -20,8 +42,8 @@
                 <% }else{ %>
                     <%= comment.likes.length %> Likes
                 <% } %>
-            </small>
-    </p>    
+            </small> -->
+    <!-- </p>     -->
 
-</li>
+<!-- </li> -->
 <!-- <script src="/js/home_post_comments.js"></script> -->
